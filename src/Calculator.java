@@ -18,16 +18,36 @@ import java.util.Scanner;
 // TODO. 10.17 20:03 분 리팩토링 진행. 메서드 이름 수정, 의존성 보완, Collection 클래스 삭제
 public class Calculator {
 
+    private Scanner sc;
+
     private ArrayList<Integer> collection = new ArrayList<>();
 
+    public ArrayList<Integer> getCollection() {
+        return collection;
+    }
+
+    public ArrayList<Integer> deleteFirstArray() {
+        if (!this.collection.isEmpty()){
+            this.collection.remove(0);
+        }
+        return this.collection;
+    }
+
+    public void setCollection(ArrayList<Integer> collection) {
+        this.collection = collection;
+    }
+
+    Calculator(Scanner sc) {
+        this.sc = sc;
+    }
+
     //인자값을 받아서, try-catch 로 정수일 경우에만 리턴해주기.
-    public int setInt(Scanner sc) { //정수를 사용자로부터 받아옴
-        System.out.println(collection.getSaveResult());
+    public int geIntInput() { //정수를 사용자로부터 받아옴
         int a = 0;
         while(true){
             System.out.print("정수를 입력해주세요 : ");
             try{
-                a = sc.nextInt();
+                a = this.sc.nextInt();
                 if(a<0){
                     System.out.println("0혹은 양의 정수를 입력해주세요.");
                     continue;
@@ -36,19 +56,19 @@ public class Calculator {
             }
             catch(InputMismatchException e){
                 System.out.println("숫자가 아닌 값은 들어올 수 없습니다.");
-                sc.nextLine();
+                this.sc.nextLine();
             }
         }
         return a;
     }
     // 인자값을 받아서, try-catch 로 사칙연산일 경우에만 리턴해주기
-    public String setString(Scanner sc){ // 1. setOperator 메서드 이름 명확하게 만들어주기
+    public String getOperatorInput(){ // 1. setOperator 메서드 이름 명확하게 만들어주기
         System.out.print("사칙연산 기호를 입력하세요 (+ - * /): ");
-        String str;
+        String operator;
         while(true){
             try{
-                str = sc.next();
-                if(str.equals("+")||str.equals("-")||str.equals("*")||str.equals("/")){
+                operator = this.sc.next();
+                if(operator.equals("+")|| operator.equals("-")|| operator.equals("*")|| operator.equals("/")){
                     break;
                 }
                 else{
@@ -57,10 +77,10 @@ public class Calculator {
             }
             catch(InputMismatchException e){
                 System.out.println("사칙연산 기호를 입력해주세요. 숫자는 입력할 수 없습니다.");
-                sc.nextLine();
+                this.sc.nextLine();
             }
         }
-        return str;
+        return operator;
     }
 
     // 나눗셈일 경우 분모가 0인지 아닌지 감지하기
@@ -72,17 +92,14 @@ public class Calculator {
     }
 
     // exit 일 경우 종료, del 일 경우 collection 첫번째 배열 삭제, 아닐경우 계속하기
-    public boolean controlCalcul(Scanner sc){
-        System.out.println("프로그램을 종료하려면 exit, 저장된 배열의 첫번째 값을 삭제하려면 del, 아니면 아무 키를 입력하세요.");
-        String result = sc.next();
+    public boolean controlCalcul(){
+        System.out.println("프로그램을 종료하려면 exit, 아니면 아무 키를 입력하세요.");
+        String result = this.sc.next();
         if("exit".equals(result)){
             System.out.println("프로그램을 종료합니다.");
             return false;
         }
-        else if("del".equals(result)){
-            collection.setDeleteSaveResult(deleteFirstArray(collection.getSaveResult()));
-        }
-        sc.nextLine();
+        this.sc.nextLine();
         return true;
     }
 
@@ -116,7 +133,7 @@ public class Calculator {
             default:
                 return 0;
         }
-        collection.setSaveResult(result);
+        collection.add(result);
         return result;
     }
 }
