@@ -12,7 +12,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
         // 프로그램 구동에 필요한 변수, 인스턴스 선언
         Scanner sc = new Scanner(System.in);
         Calculator calculator = new Calculator();  //1. 생성자를 빈값으로 호출하거나. 2. 이미 호출할때 파라미터가 빈값이거나.

@@ -5,6 +5,7 @@
 
 import java.util.ArrayList;
 
+//오버엔지니어링. 유지보수할 곳이 늘어남.
 public class Collection {
     private ArrayList<Integer> saveResult = new ArrayList<>();
 

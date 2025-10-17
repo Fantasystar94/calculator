@@ -15,13 +15,13 @@ import java.util.Scanner;
 // 6. 연산 결과는 calculator 클래스의 연산 결과를 저장하는 필드에 저장 v
 // 7. /App(현재 Main) 클래스의 main 메서드에서 calculator 클래스의 연산결과를 저장하고있는 컬렉션 필드에 직접 접근못하게 수정 v
 // 8. calculator 클래스에 저장된 연산 결과들 중 가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드를 구현한 후 App 클래스의 main 메서드에 삭제 메서드 활용 [?] // 메인메서드에서 활용하지 않음. 하지만 이게 더 기능이 좋은듯?
-
+// TODO. 10.17 20:03 분 리팩토링 진행. 메서드 이름 수정, 의존성 보완, Collection 클래스 삭제
 public class Calculator {
 
-    Collection collection = new Collection();
+    private ArrayList<Integer> collection = new ArrayList<>();
 
     //인자값을 받아서, try-catch 로 정수일 경우에만 리턴해주기.
-    public int setInt(Scanner sc) {
+    public int setInt(Scanner sc) { //정수를 사용자로부터 받아옴
         System.out.println(collection.getSaveResult());
         int a = 0;
         while(true){
@@ -42,7 +42,7 @@ public class Calculator {
         return a;
     }
     // 인자값을 받아서, try-catch 로 사칙연산일 경우에만 리턴해주기
-    public String setString(Scanner sc){
+    public String setString(Scanner sc){ // 1. setOperator 메서드 이름 명확하게 만들어주기
         System.out.print("사칙연산 기호를 입력하세요 (+ - * /): ");
         String str;
         while(true){
