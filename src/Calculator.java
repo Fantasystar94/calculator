@@ -9,10 +9,13 @@ import java.util.Scanner;
 //3. 0을 포함한 양의 정수 2개와 연산 기호를 매개변수로 받아 사칙연산 수행
 //4. 이후 결과값을 반환하는 메서드와
 //10.16 추가 작업 내용
-//TODO 5. 연산결과를 저장하는 컬렉션 타입 필드를 가진 클래스 생성
-//TODO 6. 연산 결과는 calculator 클래스의 연산 결과를 저장하는 필드에 저장
-//TODO 7. /App(현재 Main) 클래스의 main 메서드에서 calculator 클래스의 연산결과를 저장하고있는 컬렉션 필드에 직접 접근못하게 수정
-//TODO 8. calculator 클래스에 저장된 연산 결과들 중 가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드를 구현한 후 App 클래스의 main 메서드에 삭제 메서드 활용
+
+//10.17 완성내용
+// 5. 연산결과를 저장하는 컬렉션 타입 필드를 가진 클래스 생성 v
+// 6. 연산 결과는 calculator 클래스의 연산 결과를 저장하는 필드에 저장 v
+// 7. /App(현재 Main) 클래스의 main 메서드에서 calculator 클래스의 연산결과를 저장하고있는 컬렉션 필드에 직접 접근못하게 수정 v
+// 8. calculator 클래스에 저장된 연산 결과들 중 가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드를 구현한 후 App 클래스의 main 메서드에 삭제 메서드 활용 [?] // 메인메서드에서 활용하지 않음. 하지만 이게 더 기능이 좋은듯?
+
 public class Calculator {
 
     Collection collection = new Collection();
@@ -68,7 +71,7 @@ public class Calculator {
         return true;
     }
 
-    // exit 일 경우 종료, 아닐경우 계속하기
+    // exit 일 경우 종료, del 일 경우 collection 첫번째 배열 삭제, 아닐경우 계속하기
     public boolean controlCalcul(Scanner sc){
         System.out.println("프로그램을 종료하려면 exit, 저장된 배열의 첫번째 값을 삭제하려면 del, 아니면 아무 키를 입력하세요.");
         String result = sc.next();
@@ -83,11 +86,11 @@ public class Calculator {
         return true;
     }
 
+    //첫번째 컬렉션 배열 삭제 기능
     public ArrayList<Integer> deleteFirstArray(ArrayList<Integer> list){
         if(!list.isEmpty()){
            list.remove(0);
         }
-//        System.out.println("deleteFirstArray"+list);
         return list;
     }
 

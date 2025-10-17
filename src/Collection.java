@@ -8,14 +8,17 @@ import java.util.ArrayList;
 public class Collection {
     private ArrayList<Integer> saveResult = new ArrayList<>();
 
+    // setter. 계산이 끝날때마다 컬렉션에 추가
     public void setSaveResult(int a){
         this.saveResult.add(a);
     }
 
+    // 첫번째 배열 삭제하는 메소드
     public void setDeleteSaveResult(ArrayList<Integer> list){
         this.saveResult = list;
     }
 
+    // getter. 컬렉션 값 가져오기
     public ArrayList<Integer> getSaveResult(){
         return this.saveResult;
     }
