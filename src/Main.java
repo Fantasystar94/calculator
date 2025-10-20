@@ -26,46 +26,55 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Calculator calculator = new Calculator();  //1. 생성자를 빈값으로 호출하거나. 2. 이미 호출할때 파라미터가 빈값이거나.
         ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
-        int a = 0;  //변수명 명확하게
-        int b = 0;
-        String c;
-        int result = 0;
+        double firstNum = 0;  //변수명 명확하게
+        double secondNum = 0;
+        String operator;
+        double result = 0;
+        Number ArithmeticResult;
         boolean controller = true;
         // 프로그램 구동에 필요한 변수, 인스턴스 선언
+
+        //10.20 추가기능 구현. 배열에 객체를 넣어 정수형 or 실수형 숫자타입, String 으로 정수인지 실수인지 담는 ArrayList 생성
+        ArrayList<TypeOfNumbers> typeOfNumbers = new ArrayList<>();
 
         // controller 로 종료하지 않는 한 반복됨
         while(controller){
 
-            a = calculator.geIntInput();
-            c = calculator.getOperatorInput();
-            b = calculator.geIntInput();
+            firstNum = calculator.geIntInput();
+            operator = calculator.getOperatorInput();
+            secondNum = calculator.geIntInput();
             //리절트가 뭔지 검증을 더 해보는 구문...
-            boolean divideChk = calculator.divideCheck(a,b,c);
+            boolean divideChk = calculator.divideCheck(firstNum, secondNum, operator);
             if(!divideChk){
                 System.out.println("0으로 나눌 수 없습니다. 처음으로 되돌아갑니다.");
                 continue;
             }
 
             // 결과 계산
-            result = calculator.calculate(a, b, c);
-            arithmeticCalculator.calculate(a, b, c);
-            System.out.println("컬렉션 리스트 : " + calculator.getCollection());//여기서 컬렉션 추가됨.
-            System.out.println("연산결과 : "+result);
+            ArithmeticResult = arithmeticCalculator.calculate(firstNum, secondNum, operator);
+
+            for(TypeOfNumbers item : typeOfNumbers){
+                System.out.println(item.getTypeofNumber() + " : " + item.getValue());
+            }
+            System.out.println("컬렉션 리스트 : " + arithmeticCalculator.getCollection());//여기서 컬렉션 추가됨.
+//            System.out.println("연산결과 : "+result);
 
             // 컬렉션이 빈값이 아니면 수행.
-            if(!calculator.getCollection().isEmpty()){
+            if(!arithmeticCalculator.getCollection().isEmpty()){
                 System.out.println("연산 결과 중 첫번째 데이터를 삭제하려면 y 를 입력하세요");
                 String deleteOperator = sc.next();
                 if(("y").equals(deleteOperator)){
-                    System.out.println("삭제된 값 " + calculator.getCollection().get(0));
-                    calculator.deleteFirstArray();
+                    System.out.println("삭제된 값 " + arithmeticCalculator.getCollection().get(0));
+                    arithmeticCalculator.deleteFirstArray();
                 }
             }
 
             //while 문 true, false
             controller = calculator.controlCalcul();
-
-            System.out.println("현재 저장된 연산 결과들 : "+calculator.getCollection());
+            System.out.println("입력한 값보다 큰 결과값들이 출력됩니다.");
+            int biggerThanInput = sc.nextInt();
+            arithmeticCalculator.biggerThanInputs(biggerThanInput);
+            System.out.println("현재 저장된 연산 결과들 : "+arithmeticCalculator.getCollection());
         }
     }
 }

@@ -1,6 +1,7 @@
 //10.15 LV2 시작
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,32 +21,34 @@ public class Calculator {
 
     Scanner sc = new Scanner(System.in);
 
-    private ArrayList<Integer> collection = new ArrayList<>();
+    //초기 ArrayList 정수형인 숫자만 받았음.
+    private ArrayList<Double> collection = new ArrayList<>();
 
 
-    public ArrayList<Integer> getCollection() {
+    public ArrayList<Double> getCollection() {
         return collection;
     }
 
-    public ArrayList<Integer> deleteFirstArray() {
+    public ArrayList<Double> deleteFirstArray() {
         if (!this.collection.isEmpty()){
             this.collection.remove(0);
         }
         return this.collection;
     }
 
-    public void setCollection(ArrayList<Integer> collection) {
+    public void setCollection(ArrayList<Double> collection) {
         this.collection = collection;
     }
+    //초기 ArrayList 정수형인 숫자만 받았음.
 
 
     //인자값을 받아서, try-catch 로 정수일 경우에만 리턴해주기.
-    public int geIntInput() { //정수를 사용자로부터 받아옴
-        int a = 0;
+    public double geIntInput() { //정수를 사용자로부터 받아옴
+        double a = 0;
         while(true){
             System.out.print("정수를 입력해주세요 : ");
             try{
-                a = this.sc.nextInt();
+                a = this.sc.nextDouble();
                 if(a<0){
                     System.out.println("0혹은 양의 정수를 입력해주세요.");
                     continue;
@@ -82,7 +85,7 @@ public class Calculator {
     }
 
     // 나눗셈일 경우 분모가 0인지 아닌지 감지하기
-    public boolean divideCheck(int a, int b, String c){
+    public boolean divideCheck(double a, double b, String c){
         if(("/").equals(c) && b==0) {
             return false;
         }
@@ -117,9 +120,9 @@ public class Calculator {
      * @param c;
      * @return result;
      */
-    public int calculate(int a, int b, String c) {
+    public double calculate(double a, double b, String c) {
 
-        int result = 0;
+        double result = 0;
         switch (c) {
             case "+": result = a + b;
                break;
