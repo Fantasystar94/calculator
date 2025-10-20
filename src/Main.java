@@ -56,7 +56,7 @@ public class Main {
             for(TypeOfNumbers item : typeOfNumbers){
                 System.out.println(item.getTypeofNumber() + " : " + item.getValue());
             }
-            System.out.println("컬렉션 리스트 : " + arithmeticCalculator.getCollection());//여기서 컬렉션 추가됨.
+//            System.out.println("컬렉션 리스트 : " + arithmeticCalculator.getCollection());//여기서 컬렉션 추가됨.
 //            System.out.println("연산결과 : "+result);
 
             // 컬렉션이 빈값이 아니면 수행.
@@ -72,8 +72,7 @@ public class Main {
             //while 문 true, false
             controller = calculator.controlCalcul();
             System.out.println("입력한 값보다 큰 결과값들이 출력됩니다.");
-            int biggerThanInput = sc.nextInt();
-            arithmeticCalculator.biggerThanInputs(biggerThanInput);
+            arithmeticCalculator.biggerThanInputs();
             System.out.println("현재 저장된 연산 결과들 : "+arithmeticCalculator.getCollection());
         }
     }

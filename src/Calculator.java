@@ -22,14 +22,13 @@ public class Calculator {
     Scanner sc = new Scanner(System.in);
 
     //초기 ArrayList 정수형인 숫자만 받았음.
-    private ArrayList<Double> collection = new ArrayList<>();
+    private List<Double> collection = new ArrayList<>();
 
-
-    public ArrayList<Double> getCollection() {
+    public List<Double> getCollection() {
         return collection;
     }
 
-    public ArrayList<Double> deleteFirstArray() {
+    public List<Double> deleteFirstArray() {
         if (!this.collection.isEmpty()){
             this.collection.remove(0);
         }

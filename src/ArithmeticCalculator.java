@@ -1,10 +1,13 @@
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class ArithmeticCalculator {
     //10.20 추가기능 구현. 배열에 객체를 넣어 정수형 or 실수형 숫자타입, String 으로 정수인지 실수인지 담는 ArrayList 생성
     private ArrayList<TypeOfNumbers> typeOfNumbers = new ArrayList<>();
-
+    Scanner sc = new Scanner(System.in);
+    double number;
     public ArrayList<TypeOfNumbers> getCollection() {
         return typeOfNumbers;
     }
@@ -46,11 +49,22 @@ public class ArithmeticCalculator {
         return this.typeOfNumbers;
     }
     //입력받은 값보다 큰 결과값 출력
-    public void biggerThanInputs(int a) {
-        int number = a;
+    public void biggerThanInputs() {
+        while(true){
+            System.out.print("정수를 입력해주세요 : ");
+            try{
+                number = this.sc.nextDouble();
+                break;
+            }
+            catch(InputMismatchException e){
+                System.out.println("숫자가 아닌 값은 들어올 수 없습니다.");
+                this.sc.nextLine();
+            }
+        }
+
         this.typeOfNumbers.stream()
-                .filter(typeOfNumbers1 -> typeOfNumbers1.getValue().intValue()>number)
-                .forEach(typeOfNumbers1 -> System.out.println(typeOfNumbers1.getValue()));
+                .filter(typeOfNumbers1 -> typeOfNumbers1.getValue().intValue()>this.number)
+                .forEach(typeOfNumbers1 -> System.out.println(this.number+"보다 큰 값 : "+typeOfNumbers1.getValue()));
     }
 
 }
