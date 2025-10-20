@@ -18,9 +18,10 @@ import java.util.Scanner;
 // TODO. 10.17 20:03 분 리팩토링 진행. 메서드 이름 수정, 의존성 보완, Collection 클래스 삭제
 public class Calculator {
 
-    private Scanner sc;
+    Scanner sc = new Scanner(System.in);
 
     private ArrayList<Integer> collection = new ArrayList<>();
+
 
     public ArrayList<Integer> getCollection() {
         return collection;
@@ -37,9 +38,6 @@ public class Calculator {
         this.collection = collection;
     }
 
-    Calculator(Scanner sc) {
-        this.sc = sc;
-    }
 
     //인자값을 받아서, try-catch 로 정수일 경우에만 리턴해주기.
     public int geIntInput() { //정수를 사용자로부터 받아옴
@@ -111,6 +109,7 @@ public class Calculator {
         return list;
     }
 
+
     /**
      *
      * @param a;
@@ -119,6 +118,7 @@ public class Calculator {
      * @return result;
      */
     public int calculate(int a, int b, String c) {
+
         int result = 0;
         switch (c) {
             case "+": result = a + b;

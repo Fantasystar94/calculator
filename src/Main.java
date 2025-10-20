@@ -9,13 +9,24 @@ import java.util.Scanner;
 //calculator 클래스에 저장된 연산 결과들 중 가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드를 구현한 후 App 클래스의 main 메서드에
 //삭제 메서드가 활용될 수 있도록 수정
 //10/17 연산자 입력받는 부분 메소드로 분리 후 예외처리 추가하기 - 완료
+
+//TODO 10/20 Enum, 제네릭, 람다 & 스트림을 이해한 계산기 만들기
+/**
+ * 현재 사칙연산 계산기는 (➕,➖,✖️,➗) 이렇게 총 4가지 연산 타입으로 구성되어 있습니다.
+ * Enum 타입을 활용하여 연산자 타입에 대한 정보를 관리하고
+ * 이를 사칙연산 계산기 ArithmeticCalculator 클래스에 활용 해봅니다.
+ * 실수, 즉 double 타입의 값을 전달 받아도 연산이 수행하도록 만들기
+ * 저장된 연산 결과들 중 Scanner로 입력받은 값보다 큰 결과값 들을 출력
+ * */
+
 public class Main {
 
     public static void main(String[] args) {
         // 프로그램 구동에 필요한 변수, 인스턴스 선언
         Scanner sc = new Scanner(System.in);
-        Calculator calculator = new Calculator(sc);  //1. 생성자를 빈값으로 호출하거나. 2. 이미 호출할때 파라미터가 빈값이거나.
-        int a = 0;
+        Calculator calculator = new Calculator();  //1. 생성자를 빈값으로 호출하거나. 2. 이미 호출할때 파라미터가 빈값이거나.
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
+        int a = 0;  //변수명 명확하게
         int b = 0;
         String c;
         int result = 0;
@@ -24,6 +35,7 @@ public class Main {
 
         // controller 로 종료하지 않는 한 반복됨
         while(controller){
+
             a = calculator.geIntInput();
             c = calculator.getOperatorInput();
             b = calculator.geIntInput();
@@ -35,12 +47,10 @@ public class Main {
             }
 
             // 결과 계산
-            result = calculator.calculate(a, b, c); //여기서 컬렉션 추가됨.
-            System.out.println("컬렉션 리스트 : " + calculator.getCollection());
+            result = calculator.calculate(a, b, c);
+            arithmeticCalculator.calculate(a, b, c);
+            System.out.println("컬렉션 리스트 : " + calculator.getCollection());//여기서 컬렉션 추가됨.
             System.out.println("연산결과 : "+result);
-
-            //while 문 true, false
-            controller = calculator.controlCalcul();
 
             // 컬렉션이 빈값이 아니면 수행.
             if(!calculator.getCollection().isEmpty()){
@@ -51,6 +61,10 @@ public class Main {
                     calculator.deleteFirstArray();
                 }
             }
+
+            //while 문 true, false
+            controller = calculator.controlCalcul();
+
             System.out.println("현재 저장된 연산 결과들 : "+calculator.getCollection());
         }
     }
