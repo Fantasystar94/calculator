@@ -51,7 +51,7 @@ public class ArithmeticCalculator {
     //입력받은 값보다 큰 결과값 출력
     public void biggerThanInputs() {
         while(true){
-            System.out.print("정수를 입력해주세요 : ");
+            System.out.print("숫자를 입력해주세요. 해당 입력값보다 큰 결과값들이 출력됩니다. : ");
             try{
                 number = this.sc.nextDouble();
                 break;
